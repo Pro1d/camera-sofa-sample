@@ -106,13 +106,13 @@ public class ViewerActivity extends Activity implements ConnectionStateChangedLi
 	public void onPadEvent(GamePadStateChangedEvent event) {
 		switch(event.eventType) {
 		case JOINED:
-			textConnected.setText(easyIO.getGamePadInformationId(event.gamePadId).staticInformations.getNickname()+" is connected");
+			textConnected.setText(easyIO.getGamePadInformation(event.gamePadId).staticInformations.getNickname()+" is connected");
 			break;
 		case INFORMATION:
 			break;
 		case LEFT:
 		case UNEXPECTEDLY_DISCONNECTED:
-			textConnected.setText(easyIO.getGamePadInformationId(event.gamePadId).staticInformations.getNickname()+" is gone");
+			textConnected.setText(easyIO.getGamePadInformation(event.gamePadId).staticInformations.getNickname()+" is gone");
 			break;
 		}
 	}
