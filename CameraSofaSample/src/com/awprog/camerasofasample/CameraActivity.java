@@ -1,7 +1,5 @@
 package com.awprog.camerasofasample;
 
-import java.util.UUID;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -46,7 +44,8 @@ public class CameraActivity extends Activity implements OnImageListener, OnCusto
 		buttonCapture.setEnabled(false);
 		
 		/** SOFA **/
-		GamePadInformation info = new GamePadInformation("Camera", UUID.randomUUID());
+		GamePadInformation info = new GamePadInformation(this);
+		info.setNickname("Camera");
 		easyIO = new GamePadIOHelper(this, info);
 		easyIO.start(this);
 		easyIO.setOnCustomMessageReceivedListener(this);

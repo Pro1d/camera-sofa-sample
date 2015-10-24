@@ -21,6 +21,7 @@ import com.fbessou.sofa.GameIOHelper.GamePadCustomMessage;
 import com.fbessou.sofa.GameIOHelper.GamePadStateChangedEvent;
 import com.fbessou.sofa.GameIOHelper.StateChangedEventListener;
 import com.fbessou.sofa.GameInformation;
+import com.fbessou.sofa.Log;
 
 public class ViewerActivity extends Activity implements ConnectionStateChangedListener, CustomMessageListener, StateChangedEventListener {
 	GameIOHelper easyIO;
@@ -32,13 +33,15 @@ public class ViewerActivity extends Activity implements ConnectionStateChangedLi
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_viewer);
+		Log.setLogFilterMask(Log.FILTER_NOTHING);
 		
 		textConnected = (TextView) findViewById(R.id.textConnected);
 		surfaceViewer = (SurfaceView) findViewById(R.id.surfaceViewViewer);
 		holderViewer = surfaceViewer.getHolder();
 		
 		/** SOFA **/
-		GameInformation info = new GameInformation("Image Viewer");
+		GameInformation info = new GameInformation(this);
+		info.setName("Image Viewer");
 		easyIO = new GameIOHelper(this, info, null, this, this);
 		easyIO.start(this);
 	}
